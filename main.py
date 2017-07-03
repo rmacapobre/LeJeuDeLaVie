@@ -1,5 +1,4 @@
 import pygame
-from threading import Event, Thread
 
 class JeuDelaVie:
     def initializeFlags(self):
@@ -290,13 +289,12 @@ class JeuDelaVie:
 
 
     # Display the current board
-    def displayBoard(self, x, y):
-        color = (255, 118, 110)
+    def displayBoard(self, x, y, color):
         for row in range(self.size):
             for col in range(self.size):
                 if (self.board[row][col] == 1):
-                    rect = pygame.Rect(x+(row*20), y+(col*20), 10, 10)
-                    pygame.draw.rect(self.screen, color, rect)
+                    #rect = pygame.Rect(x+(row*20), y+(col*20), 10, 10)
+                    pygame.draw.circle(self.screen, color, (x+(row*20), y+(col*20)), 20, 1)
 
 
 
@@ -331,7 +329,7 @@ while not done:
         color = (255, 100, 0)
 
     jeu.screen.fill((0, 0, 0))
-    jeu.displayBoard(10, 10)
+    jeu.displayBoard(10, 10, color)
 
     pygame.display.flip()
     jeu.clock.tick(60)
